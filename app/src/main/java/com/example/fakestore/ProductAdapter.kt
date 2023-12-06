@@ -11,7 +11,7 @@ import com.example.fakestore.model.Product
 import com.squareup.picasso.Picasso
 
 class ProductAdapter(
-    private val productList: List<Product>,
+    private var productList: List<Product>,
     private val onProductClick: (Product) -> Unit // Callback for click events
 ) : RecyclerView.Adapter<ProductAdapter.ProductViewHolder>() {
 
@@ -19,6 +19,7 @@ class ProductAdapter(
         val imageView: ImageView = view.findViewById(R.id.image_product)
         val titleView: TextView = view.findViewById(R.id.text_product_title)
         val priceView: TextView = view.findViewById(R.id.text_product_price)
+        val categoryView: TextView = view.findViewById(R.id.text_product_category)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewHolder {
@@ -26,14 +27,22 @@ class ProductAdapter(
         return ProductViewHolder(itemView)
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
         val product = productList[position]
         Picasso.get().load(product.images.firstOrNull()).into(holder.imageView)
         holder.titleView.text = product.title
         holder.priceView.text = "$${product.price}"
+        holder.categoryView.text = product.category.name
 
         // Handle click event
         holder.itemView.setOnClickListener { onProductClick(product) }
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun updateData(newProductList: List<Product>) {
+        productList = newProductList
+        notifyDataSetChanged()
     }
 
     override fun getItemCount() = productList.size

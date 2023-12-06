@@ -5,12 +5,16 @@ data class Product(
     val title: String,
     val price: Double,
     val description: String,
-    val category: List<String>,
-    val images: List<String>
+    val category: Category,
+    val images: List<String>,
+    val creationAt: String,
+    val updatedAt: String
 )
 
 data class Category(
     val id: Int,
     val name: String,
-    val image: String
+    val image: String,
+    val creationAt: String,
+    val updatedAt: String
 )

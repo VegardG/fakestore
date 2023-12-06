@@ -13,15 +13,25 @@
 
     <TextView
         android:id="@+id/text_product_title"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingTop="8dp"
-        android:textSize="16sp"
-        android:textStyle="bold" />
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:text="@string/product_title" />
 
+    <!-- Product Price -->
     <TextView
         android:id="@+id/text_product_price"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="14sp" />
+        android:textSize="16sp"
+        android:text="@string/price" />
+
+    <!-- Product Category -->
+    <TextView
+        android:id="@+id/text_product_category"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:text="@string/category" />
 </LinearLayout>

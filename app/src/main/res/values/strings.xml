@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">fakestore</string>
+    <string name="category">Category</string>
+    <string name="price">Price</string>
+    <string name="product_title">Product Title</string>
 </resources>
