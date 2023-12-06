@@ -1,6 +1,5 @@
 package com.example.fakestore
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
@@ -16,7 +15,6 @@ import retrofit2.Response
 
 class ActivityProductDetail : AppCompatActivity() {
 
-    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_product_detail)

@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -15,9 +14,6 @@ import com.example.fakestore.model.Product
 import com.example.fakestore.network.ApiClient
 import kotlinx.coroutines.*
 
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class MainActivity : AppCompatActivity() {
 
@@ -50,6 +46,7 @@ class MainActivity : AppCompatActivity() {
     }
 
 
+    @SuppressLint("NotifyDataSetChanged")
     private suspend fun loadProducts() {
         try {
             val response = ApiClient.instance.getProducts()
