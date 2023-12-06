@@ -49,7 +49,7 @@ class ActivityProductDetail : AppCompatActivity() {
                 if (response.isSuccessful) {
                     response.body()?.let { product ->
                         onResult(product)
-                    }
+                    } ?: showError("Product not found")
                 } else {
                     showError("Error: ${response.code()}")
                 }

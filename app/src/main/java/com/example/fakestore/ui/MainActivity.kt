@@ -2,6 +2,8 @@ package com.example.fakestore.ui
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
@@ -61,13 +63,16 @@ class MainActivity : AppCompatActivity() {
                     productList = response.body() ?: emptyList()
                     productAdapter.notifyDataSetChanged() // Refresh the adapter
                 } else {
-                    // Handle errors
+                    Log.e("MainActivity", "Error: ${response.errorBody()?.string()}")
                 }
             }
 
             override fun onFailure(call: Call<List<Product>>, t: Throwable) {
-                // Handle failure
+                Log.e("MainActivity", "Failure: ${t.message}")
             }
         })
+    }
+    private fun showError(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show()
     }
 }

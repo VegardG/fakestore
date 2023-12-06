@@ -14,4 +14,12 @@ object CartManager {
             items.add(CartItem(product, quantity))
         }
     }
+
+    fun removeFromCart(productId: Int) {
+        items.removeAll { it.product.id == productId }
+    }
+
+    fun clearCart() {
+        items.clear()
+    }
 }
