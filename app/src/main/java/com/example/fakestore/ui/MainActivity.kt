@@ -46,14 +46,14 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    @SuppressLint("NotifyDataSetChanged")
+
     private suspend fun loadProducts() {
         try {
             val response = ApiClient.instance.getProducts()
             if (response.isSuccessful) {
                 withContext(Dispatchers.Main) {
                     productList = response.body() ?: emptyList()
-                    productAdapter.notifyDataSetChanged()
+                    productAdapter.updateData(productList)
                 }
 
             } else {

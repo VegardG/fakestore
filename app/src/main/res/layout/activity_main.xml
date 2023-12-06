@@ -1,7 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.recyclerview.widget.RecyclerView android:id="@+id/recycler_view_products"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
-    xmlns:android="http://schemas.android.com/apk/res/android" />
+    android:orientation="vertical"
+    android:padding="16dp">
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view_products"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <!-- Button to navigate to Shopping Cart -->
+    <Button
+        android:id="@+id/button_to_cart"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Shopping Cart"
+        android:layout_marginTop="8dp" />
+
+    <!-- Button to navigate to Order History -->
+    <Button
+        android:id="@+id/button_to_order_history"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Order History"
+        android:layout_marginTop="8dp" />
+</LinearLayout>
