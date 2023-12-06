@@ -9,7 +9,7 @@ import retrofit2.Response
 
 interface ApiService {
     @GET("products")
-    fun getProducts(): Deferred<Response<List<Product>>>
+    suspend fun getProducts(): Response<List<Product>>
 
     @GET("products/{id}")
     fun getProductById(@Path("id") id: Int): Call<Product>

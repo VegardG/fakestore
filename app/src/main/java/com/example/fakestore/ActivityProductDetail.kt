@@ -1,20 +1,22 @@
 package com.example.fakestore
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.bumptech.glide.Glide
 import com.example.fakestore.model.Product
 import com.example.fakestore.network.ApiClient
-import com.squareup.picasso.Picasso
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class ActivityProductDetail : AppCompatActivity() {
 
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_product_detail)
@@ -31,7 +33,7 @@ class ActivityProductDetail : AppCompatActivity() {
                 titleView.text = product.title
                 priceView.text = "$${product.price}"
                 descriptionView.text = product.description
-                Picasso.get().load(product.images.firstOrNull()).into(imageView)
+                Glide.with(this).load(product.images.firstOrNull()).into(imageView)
             }
         }
 

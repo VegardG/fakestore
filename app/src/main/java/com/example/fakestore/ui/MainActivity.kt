@@ -49,12 +49,16 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+
     private suspend fun loadProducts() {
         try {
-            val response = ApiClient.instance.getProducts().await()
+            val response = ApiClient.instance.getProducts()
             if (response.isSuccessful) {
-                productList = response.body() ?: emptyList()
-                productAdapter.notifyDataSetChanged()
+                withContext(Dispatchers.Main) {
+                    productList = response.body() ?: emptyList()
+                    productAdapter.notifyDataSetChanged()
+                }
+
             } else {
                 Log.e("MainActivity", "Error: ${response.errorBody()?.string()}")
             }

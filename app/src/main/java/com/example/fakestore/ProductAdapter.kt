@@ -7,8 +7,8 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.fakestore.model.Product
-import com.squareup.picasso.Picasso
 
 class ProductAdapter(
     private var productList: List<Product>,
@@ -30,7 +30,7 @@ class ProductAdapter(
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
         val product = productList[position]
-        Picasso.get().load(product.images.firstOrNull()).into(holder.imageView)
+        Glide.with(holder.itemView.context).load(product.images.firstOrNull()).into(holder.imageView)
         holder.titleView.text = product.title
         holder.priceView.text = "$${product.price}"
         holder.categoryView.text = product.category.name
