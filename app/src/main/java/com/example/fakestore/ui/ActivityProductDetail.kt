@@ -1,4 +1,4 @@
-package com.example.fakestore
+package com.example.fakestore.ui
 
 import android.os.Bundle
 import android.widget.Button
@@ -7,6 +7,8 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
+import com.example.fakestore.CartManager
+import com.example.fakestore.R
 import com.example.fakestore.model.Product
 import com.example.fakestore.network.ApiClient
 import retrofit2.Call
@@ -24,6 +26,7 @@ class ActivityProductDetail : AppCompatActivity() {
         val priceView: TextView = findViewById(R.id.text_product_detail_price)
         val descriptionView: TextView = findViewById(R.id.text_product_detail_description)
         val addToCartButton: Button = findViewById(R.id.button_add_to_cart)
+        val buttonBack: Button = findViewById(R.id.button_back)
 
         val productId = intent.getIntExtra("PRODUCT_ID", -1)
         if (productId != -1) {
@@ -41,6 +44,10 @@ class ActivityProductDetail : AppCompatActivity() {
                 Toast.makeText(this@ActivityProductDetail, "${product.title} added to cart", Toast.LENGTH_SHORT).show()
             }
         }
+        buttonBack.setOnClickListener {
+            finish()
+        }
+
     }
 
     private fun getProductById(productId: Int, onResult: (Product) -> Unit) {

@@ -1,13 +1,12 @@
 package com.example.fakestore.ui
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.fakestore.ActivityProductDetail
 import com.example.fakestore.ProductAdapter
 import com.example.fakestore.R
 import com.example.fakestore.model.Product
@@ -29,17 +28,25 @@ class MainActivity : AppCompatActivity() {
         recyclerView.layoutManager = LinearLayoutManager(this)
 
         productAdapter = ProductAdapter(productList) { product ->
-            // Handle product click
-            // For example, start an activity with the product details
+
             val intent = Intent(this, ActivityProductDetail::class.java).apply {
                 putExtra("PRODUCT_ID", product.id)
             }
             startActivity(intent)
         }
 
+        findViewById<Button>(R.id.button_to_cart).setOnClickListener {
+            val intent = Intent(this, ActivityCart::class.java)
+            startActivity(intent)
+        }
+
+        findViewById<Button>(R.id.button_to_order_history).setOnClickListener {
+            val intent = Intent(this, ActivityOrderHistory::class.java)
+            startActivity(intent)
+        }
+
         recyclerView.adapter = productAdapter
 
-        // Load products from API
         CoroutineScope(Dispatchers.Main).launch {
             loadProducts()
         }
