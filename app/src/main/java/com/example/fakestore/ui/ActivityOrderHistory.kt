@@ -1,5 +1,6 @@
 package com.example.fakestore.ui
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
@@ -14,6 +15,7 @@ class ActivityOrderHistory : AppCompatActivity() {
     private lateinit var orderHistoryAdapter: OrderHistoryAdapter
     private lateinit var recyclerView: RecyclerView
 
+    @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_order_history)
@@ -24,7 +26,7 @@ class ActivityOrderHistory : AppCompatActivity() {
         orderHistoryAdapter = OrderHistoryAdapter(OrderHistoryManager.getOrders())
         recyclerView.adapter = orderHistoryAdapter
 
-        findViewById<Button>(R.id.button_back_to_main_from_history).setOnClickListener {
+        findViewById<Button>(R.id.button_back).setOnClickListener {
             finish()
         }
     }

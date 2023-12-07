@@ -8,10 +8,18 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.room.Room
 import com.example.fakestore.CartAdapter
 import com.example.fakestore.CartManager
+import com.example.fakestore.OrderHistoryManager
 import com.example.fakestore.R
+import com.example.fakestore.database.AppDatabase
 import com.example.fakestore.model.Order
+import com.example.fakestore.model.OrderEntity
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.util.*
 import java.text.SimpleDateFormat
 
@@ -19,10 +27,17 @@ class ActivityCart : AppCompatActivity() {
     private lateinit var cartAdapter: CartAdapter
     private lateinit var recyclerView: RecyclerView
     private lateinit var  totalPriceTextView: TextView
+    private lateinit var db: AppDatabase
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_cart)
+
+        // Initialize the database
+        db = Room.databaseBuilder(
+            applicationContext,
+            AppDatabase::class.java, "database-name"
+        ).build()
 
         recyclerView = findViewById(R.id.recycler_view_cart_items)
         totalPriceTextView = findViewById(R.id.text_view_total_price)
@@ -49,6 +64,25 @@ class ActivityCart : AppCompatActivity() {
                 totalPrice = CartManager.items.sumOf { it.product.price * it.quantity },
                 date = getCurrentDate()
             )
+
+            CoroutineScope(Dispatchers.IO).launch {
+                try {
+                    db.orderDao().insertOrder(order)
+
+                    withContext(Dispatchers.Main) {
+                        CartManager.clearCart()
+                        cartAdapter.notifyDataSetChanged() // Update the cart UI
+                        updateTotalPrice() // Update the total price UI
+
+                        Toast.makeText(this@ActivityCart, "Order placed!", Toast.LENGTH_SHORT).show()
+                        finish() // Finish the activity or navigate as needed
+                    }
+                } catch (e: Exception) {
+                    withContext(Dispatchers.Main) {
+                        Toast.makeText(this@ActivityCart, "Failed to place order: ${e.message}", Toast.LENGTH_LONG).show()
+                    }
+                }
+            }
         } else {
             Toast.makeText(this, "Cart is empty", Toast.LENGTH_SHORT).show()
         }
