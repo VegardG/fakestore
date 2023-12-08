@@ -6,5 +6,5 @@ import androidx.room.PrimaryKey
 data class OrderEntity(
     @PrimaryKey val orderId: Int,
     val date: String,
-    val totalPrice: Double
+    val totalPrice: Double,
 )
