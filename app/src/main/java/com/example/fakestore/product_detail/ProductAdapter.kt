@@ -28,7 +28,6 @@ class ProductAdapter(
         return ProductViewHolder(itemView)
     }
 
-    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
         val product = productList[position]
         Glide.with(holder.itemView.context).load(product.images.firstOrNull()).into(holder.imageView)

@@ -8,7 +8,7 @@ import com.example.fakestore.model.OrderEntity
 @Dao
 interface OrderDao {
     @Insert
-    suspend fun insertOrder(order: com.example.fakestore.model.Order)
+    suspend fun insertOrder(order: OrderEntity)
 
     @Query("SELECT * FROM OrderEntity")
     suspend fun getAllOrders(): List<OrderEntity>

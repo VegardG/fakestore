@@ -15,6 +15,7 @@ import com.example.fakestore.order_history.OrderHistoryManager
 import com.example.fakestore.R
 import com.example.fakestore.database.AppDatabase
 import com.example.fakestore.model.Order
+import com.example.fakestore.model.OrderEntity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -64,9 +65,15 @@ class ActivityCart : AppCompatActivity() {
                 date = getCurrentDate()
             )
 
+            val orderEntity = OrderEntity(
+                orderId = order.id,
+                totalPrice = order.totalPrice,
+                date = order.date
+            )
+
             CoroutineScope(Dispatchers.IO).launch {
                 try {
-                    db.orderDao().insertOrder(order)
+                    db.orderDao().insertOrder(orderEntity)
 
                     withContext(Dispatchers.Main) {
                         OrderHistoryManager.addOrder(order)

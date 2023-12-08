@@ -9,7 +9,7 @@ import com.example.fakestore.model.Order
 import com.example.fakestore.model.OrderEntity
 import com.example.fakestore.model.ProductEntity
 
-@Database(entities = [Order::class, ProductEntity::class, OrderEntity::class], version = 2)
+@Database(entities = [Order::class, ProductEntity::class, OrderEntity::class], version = 3, exportSchema = false)
 @TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun productDao(): ProductDao
