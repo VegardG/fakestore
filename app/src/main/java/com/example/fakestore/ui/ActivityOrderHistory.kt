@@ -1,14 +1,13 @@
 package com.example.fakestore.ui
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.room.Room
-import com.example.fakestore.OrderHistoryAdapter
-import com.example.fakestore.OrderHistoryManager
+import com.example.fakestore.order_history.OrderHistoryAdapter
+import com.example.fakestore.order_history.OrderHistoryManager
 import com.example.fakestore.R
 import com.example.fakestore.database.AppDatabase
 import com.example.fakestore.model.OrderMapper

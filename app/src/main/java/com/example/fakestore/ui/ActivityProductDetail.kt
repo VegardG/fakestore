@@ -7,7 +7,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
-import com.example.fakestore.CartManager
+import com.example.fakestore.cart.CartManager
 import com.example.fakestore.R
 import com.example.fakestore.model.Product
 import com.example.fakestore.network.ApiClient

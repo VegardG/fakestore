@@ -1,7 +1,7 @@
 package com.example.fakestore.model
 
 
-import com.example.fakestore.dao.ProductDao
+import com.example.fakestore.database.dao.ProductDao
 import com.example.fakestore.model.Product
 import com.example.fakestore.model.ProductMapper
 

@@ -1,4 +1,4 @@
-package com.example.fakestore
+package com.example.fakestore.cart
 
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +9,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.fakestore.R
 import com.example.fakestore.model.CartItem
 
 class CartAdapter(

@@ -7,7 +7,7 @@ import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.fakestore.ProductAdapter
+import com.example.fakestore.product_detail.ProductAdapter
 import com.example.fakestore.R
 import com.example.fakestore.model.Product
 import com.example.fakestore.network.ApiClient

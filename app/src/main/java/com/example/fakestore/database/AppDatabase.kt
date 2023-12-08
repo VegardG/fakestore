@@ -3,9 +3,8 @@ package com.example.fakestore.database
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
-import com.example.fakestore.Converters
-import com.example.fakestore.dao.OrderDao
-import com.example.fakestore.dao.ProductDao
+import com.example.fakestore.database.dao.OrderDao
+import com.example.fakestore.database.dao.ProductDao
 import com.example.fakestore.model.Order
 import com.example.fakestore.model.OrderEntity
 import com.example.fakestore.model.ProductEntity

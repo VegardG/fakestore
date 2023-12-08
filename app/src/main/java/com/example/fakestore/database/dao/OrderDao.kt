@@ -1,4 +1,4 @@
-package com.example.fakestore.dao
+package com.example.fakestore.database.dao
 
 import androidx.room.Dao
 import androidx.room.Insert

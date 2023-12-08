@@ -1,4 +1,4 @@
-package com.example.fakestore
+package com.example.fakestore.database
 
 import androidx.room.TypeConverter
 import com.google.gson.Gson

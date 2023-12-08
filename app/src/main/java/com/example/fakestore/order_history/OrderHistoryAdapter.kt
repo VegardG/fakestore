@@ -1,9 +1,10 @@
-package com.example.fakestore
+package com.example.fakestore.order_history
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.fakestore.R
 import com.example.fakestore.model.Order
 
 class OrderHistoryAdapter(private val orders: List<Order>) : RecyclerView.Adapter<OrderHistoryAdapter.OrderViewHolder>() {

@@ -9,13 +9,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.room.Room
-import com.example.fakestore.CartAdapter
-import com.example.fakestore.CartManager
-import com.example.fakestore.OrderHistoryManager
+import com.example.fakestore.cart.CartAdapter
+import com.example.fakestore.cart.CartManager
+import com.example.fakestore.order_history.OrderHistoryManager
 import com.example.fakestore.R
 import com.example.fakestore.database.AppDatabase
 import com.example.fakestore.model.Order
-import com.example.fakestore.model.OrderEntity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -72,11 +71,11 @@ class ActivityCart : AppCompatActivity() {
                     withContext(Dispatchers.Main) {
                         OrderHistoryManager.addOrder(order)
                         CartManager.clearCart()
-                        cartAdapter.notifyDataSetChanged() // Update the cart UI
-                        updateTotalPrice() // Update the total price UI
+                        cartAdapter.notifyDataSetChanged()
+                        updateTotalPrice()
 
                         Toast.makeText(this@ActivityCart, "Order placed!", Toast.LENGTH_SHORT).show()
-                        finish() // Finish the activity or navigate as needed
+                        finish()
                     }
                 } catch (e: Exception) {
                     withContext(Dispatchers.Main) {

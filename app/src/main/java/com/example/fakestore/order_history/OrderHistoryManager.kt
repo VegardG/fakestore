@@ -1,4 +1,4 @@
-package com.example.fakestore
+package com.example.fakestore.order_history
 
 import com.example.fakestore.model.Order
 

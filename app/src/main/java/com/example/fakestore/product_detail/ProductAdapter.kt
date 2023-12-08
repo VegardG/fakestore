@@ -1,4 +1,4 @@
-package com.example.fakestore
+package com.example.fakestore.product_detail
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
@@ -8,6 +8,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.fakestore.R
 import com.example.fakestore.model.Product
 
 class ProductAdapter(
