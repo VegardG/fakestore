@@ -23,4 +23,5 @@ class OrderHistoryAdapter(private val orders: List<Order>) : RecyclerView.Adapte
     }
 
     override fun getItemCount() = orders.size
+
 }

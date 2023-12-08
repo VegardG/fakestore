@@ -70,6 +70,7 @@ class ActivityCart : AppCompatActivity() {
                     db.orderDao().insertOrder(order)
 
                     withContext(Dispatchers.Main) {
+                        OrderHistoryManager.addOrder(order)
                         CartManager.clearCart()
                         cartAdapter.notifyDataSetChanged() // Update the cart UI
                         updateTotalPrice() // Update the total price UI
