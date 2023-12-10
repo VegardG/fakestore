@@ -33,7 +33,6 @@ class ActivityCart : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_cart)
 
-        // Initialize the database
         db = Room.databaseBuilder(
             applicationContext,
             AppDatabase::class.java, "database-name"
@@ -43,7 +42,7 @@ class ActivityCart : AppCompatActivity() {
         totalPriceTextView = findViewById(R.id.text_view_total_price)
 
         recyclerView.layoutManager = LinearLayoutManager(this)
-        cartAdapter = CartAdapter(CartManager.items) { updateTotalPrice() }
+        cartAdapter = CartAdapter {updateTotalPrice() }
         recyclerView.adapter = cartAdapter
 
         updateTotalPrice()

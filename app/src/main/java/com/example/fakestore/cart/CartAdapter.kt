@@ -1,5 +1,6 @@
 package com.example.fakestore.cart
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,12 +11,10 @@ import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.fakestore.R
-import com.example.fakestore.model.CartItem
+import com.example.fakestore.cart.CartManager.items
 
-class CartAdapter(
-    private val items: MutableList<CartItem>,
-    private val onItemRemoved: () -> Unit
-) : RecyclerView.Adapter<CartAdapter.CartViewHolder>() {
+
+class CartAdapter(private val onItemRemoved: () -> Unit) : RecyclerView.Adapter<CartAdapter.CartViewHolder>() {
 
     class CartViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val productImage: ImageView = view.findViewById(R.id.image_product)
@@ -29,13 +28,13 @@ class CartAdapter(
         return CartViewHolder(itemView)
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: CartViewHolder, position: Int) {
-        val item = items.getOrNull(position) ?: return // Safeguard against invalid positions
+        val item = items.getOrNull(position) ?: return
 
-        // Reset or clear ViewHolder's views here if necessary
-        holder.productImage.setImageResource(0) // Reset image view
-        holder.productName.text = "" // Clear text view
-        holder.productPrice.text = "" // Clear text view
+        holder.productImage.setImageResource(0)
+        holder.productName.text = ""
+        holder.productPrice.text = ""
 
         // Set new data
         holder.productName.text = item.product.title
@@ -54,10 +53,14 @@ class CartAdapter(
             try {
                 val currentPosition = holder.bindingAdapterPosition
                 if (currentPosition != RecyclerView.NO_POSITION && currentPosition < items.size) {
-                    CartManager.removeFromCart(item.product.id)
-                    items.removeAt(currentPosition)
-                    notifyItemRemoved(currentPosition)
-                    notifyItemRangeChanged(currentPosition, items.size)
+                    CartManager.removeFromCart(items[currentPosition].product.id)
+                    synchronized(items) {
+                            if (currentPosition < items.size) {
+                                items.removeAt(currentPosition)
+                                notifyItemRemoved(currentPosition)
+                                notifyItemRangeChanged(currentPosition, items.size - currentPosition)
+                            }
+                    }
                     onItemRemoved()
                 }
             } catch (e: Exception) {

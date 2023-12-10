@@ -16,7 +16,10 @@ object CartManager {
     }
 
     fun removeFromCart(productId: Int) {
-        items.removeAll { it.product.id == productId }
+        val itemIndex = items.indexOfFirst { it.product.id == productId }
+        if (itemIndex != -1) {
+            items.removeAt(itemIndex)
+        }
     }
 
     fun clearCart() {
